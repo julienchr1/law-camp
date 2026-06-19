@@ -206,14 +206,7 @@
     <h2 class="form-title">Réserver mon créneau</h2>
     <p class="form-sub">On vous recontacte sous 24h pour confirmer un horaire.</p>
 
-    <!--
-      Pour activer l'envoi automatique vers les deux adresses mail :
-      1. Créer un compte gratuit sur formspree.io
-      2. Créer un nouveau formulaire et ajouter les deux emails (julienchriqui@gmail.com + romanelevy.avocat@gmail.com)
-      3. Remplacer YOUR_FORM_ID dans action="https://formspree.io/f/YOUR_FORM_ID"
-      En attendant, le formulaire soumet via mailto (ouvre le client mail).
-    -->
-    <form id="atelier-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <form id="atelier-form">
 
       <div class="form-row">
         <div class="form-group" style="margin:0">
@@ -297,42 +290,72 @@
 
       <p class="privacy-note">Vos données sont utilisées uniquement pour organiser cet atelier. Elles ne sont jamais transmises à des tiers. Vous pouvez demander leur suppression à tout moment.</p>
 
-      <button type="submit" class="btn-submit">Réserver mon atelier découverte →</button>
+      <button type="submit" class="btn-submit" id="submit-btn">
+        <span id="btn-label">Réserver mon atelier découverte →</span>
+        <span id="btn-loading" style="display:none">Envoi en cours…</span>
+      </button>
+      <p id="form-error" style="display:none;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;font-size:13px;color:#c0392b;margin-top:12px;"></p>
     </form>
 
     <div class="form-success" id="success-msg">
       <p class="success-icon">✓</p>
       <h3 class="success-title">Demande reçue.</h3>
-      <p class="success-sub">Julien ou Romane vous recontacte sous 24h pour confirmer votre créneau.<br><br>À très bientôt.</p>
+      <p class="success-sub">Un email de confirmation vient de vous être envoyé.<br>Julien ou Romane vous recontacte sous 24h pour confirmer votre créneau.<br><br>À très bientôt.</p>
     </div>
   </div>
 
 </div>
 
 <script>
-  // Fallback JS : si Formspree n'est pas encore configuré, affiche la confirmation après soumission
-  const form = document.getElementById('atelier-form');
+  const WEB3FORMS_KEY = 'YOUR_WEB3FORMS_KEY'; // → récupérer sur web3forms.com (gratuit, 30 sec)
+
+  const form    = document.getElementById('atelier-form');
   const success = document.getElementById('success-msg');
+  const btnLabel   = document.getElementById('btn-label');
+  const btnLoading = document.getElementById('btn-loading');
+  const btnSubmit  = document.getElementById('submit-btn');
+  const formError  = document.getElementById('form-error');
 
-  form.addEventListener('submit', function(e) {
-    const action = form.getAttribute('action');
-    if (action.includes('YOUR_FORM_ID')) {
-      // Formspree pas encore configuré — fallback mailto
-      e.preventDefault();
-      const data = new FormData(form);
-      const body = [...data.entries()].map(([k,v]) => `${k}: ${v}`).join('\n');
-      const subject = encodeURIComponent('Atelier Découverte Law Camp — ' + (data.get('prenom') || '') + ' ' + (data.get('nom') || ''));
-      const bodyEnc = encodeURIComponent(body);
-      window.location.href = `mailto:julienchriqui@gmail.com,romanelevy.avocat@gmail.com?subject=${subject}&body=${bodyEnc}`;
-    }
-    // Si Formspree configuré, Formspree gère la redirection/confirmation
-  });
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
 
-  // Écouter la confirmation Formspree si configuré
-  window.addEventListener('message', function(e) {
-    if (e.data && e.data.type === 'submitSuccess') {
-      form.style.display = 'none';
-      success.style.display = 'block';
+    // UI — état chargement
+    btnLabel.style.display   = 'none';
+    btnLoading.style.display = 'inline';
+    btnSubmit.disabled = true;
+    formError.style.display = 'none';
+
+    const data = new FormData(form);
+
+    // Champs Web3Forms
+    data.append('access_key', WEB3FORMS_KEY);
+    data.append('subject',    'Atelier Découverte Law Camp — ' + (data.get('prenom') || '') + ' ' + (data.get('nom') || ''));
+    data.append('from_name',  'Law Camp');
+    // CC vers le deuxième contact
+    data.append('cc', 'romanelevy.avocat@gmail.com');
+    // Autoresponder : confirmation envoyée à l'adresse du formulaire
+    data.append('replyto', data.get('email') || '');
+    data.append('botcheck', ''); // honeypot anti-spam
+
+    try {
+      const res  = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data
+      });
+      const json = await res.json();
+
+      if (json.success) {
+        form.style.display    = 'none';
+        success.style.display = 'block';
+      } else {
+        throw new Error(json.message || 'Erreur lors de l\'envoi.');
+      }
+    } catch (err) {
+      formError.textContent   = 'Une erreur est survenue. Contactez-nous directement : julienchriqui@gmail.com';
+      formError.style.display = 'block';
+      btnLabel.style.display   = 'inline';
+      btnLoading.style.display = 'none';
+      btnSubmit.disabled = false;
     }
   });
 </script>
