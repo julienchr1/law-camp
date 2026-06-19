@@ -319,28 +319,37 @@
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    // UI — état chargement
     btnLabel.style.display   = 'none';
     btnLoading.style.display = 'inline';
     btnSubmit.disabled = true;
     formError.style.display = 'none';
 
-    const data = new FormData(form);
+    // Construire un objet JSON à partir du formulaire
+    const raw = new FormData(form);
+    const prenom = raw.get('prenom') || '';
+    const nom    = raw.get('nom')    || '';
 
-    // Champs Web3Forms
-    data.append('access_key', WEB3FORMS_KEY);
-    data.append('subject',    'Atelier Découverte Law Camp — ' + (data.get('prenom') || '') + ' ' + (data.get('nom') || ''));
-    data.append('from_name',  'Law Camp');
-    // CC vers le deuxième contact
-    data.append('cc', 'romanelevy.avocat@gmail.com');
-    // Autoresponder : confirmation envoyée à l'adresse du formulaire
-    data.append('replyto', data.get('email') || '');
-    data.append('botcheck', ''); // honeypot anti-spam
+    const payload = {
+      access_key: WEB3FORMS_KEY,
+      subject:    'Atelier Découverte Law Camp — ' + prenom + ' ' + nom,
+      from_name:  'Law Camp',
+      cc:         'romanelevy.avocat@gmail.com',
+      replyto:    raw.get('email') || '',
+      prenom,
+      nom,
+      email:      raw.get('email')     || '',
+      telephone:  raw.get('telephone') || '',
+      cabinet:    raw.get('cabinet')   || '',
+      specialite: raw.get('specialite')|| '',
+      format:     raw.get('format')    || '',
+      message:    raw.get('message')   || ''
+    };
 
     try {
       const res  = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: data
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body:    JSON.stringify(payload)
       });
       const json = await res.json();
 
@@ -348,10 +357,10 @@
         form.style.display    = 'none';
         success.style.display = 'block';
       } else {
-        throw new Error(json.message || 'Erreur lors de l\'envoi.');
+        throw new Error(json.message || 'Erreur envoi');
       }
     } catch (err) {
-      formError.textContent   = 'Une erreur est survenue. Contactez-nous directement : julienchriqui@gmail.com';
+      formError.textContent   = 'Une erreur est survenue. Écrivez-nous directement : julienchriqui@gmail.com';
       formError.style.display = 'block';
       btnLabel.style.display   = 'inline';
       btnLoading.style.display = 'none';
