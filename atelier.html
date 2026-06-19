@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atelier découverte gratuit — Law Camp</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0a0a0a; --dark: #111111; --mid: #444444; --soft: #888888;
+      --line: #e8e8e8; --bg: #fafafa; --white: #ffffff;
+      --gold: #b8963e; --gold-light: #f5ede0;
+      --err: #c0392b;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: "Georgia","Times New Roman",serif; background: var(--bg); color: var(--black); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,250,250,0.94); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 62px;
+    }
+    .nav-logo { font-family: "Georgia",serif; font-size: 15px; letter-spacing: .03em; color: var(--black); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 13px; color: var(--mid); transition: color .2s; }
+    .nav-links a:hover { color: var(--black); }
+    .nav-atelier { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 12px; letter-spacing: .05em; border: 1px solid var(--gold); color: var(--gold); padding: 8px 18px; transition: all .2s; }
+    .nav-atelier:hover { background: var(--gold); color: var(--white); }
+
+    /* LAYOUT */
+    .page-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 100vh; padding-top: 62px;
+    }
+
+    /* LEFT */
+    .page-left {
+      padding: 80px 64px 80px 48px;
+      border-right: 1px solid var(--line);
+      position: sticky; top: 62px; height: calc(100vh - 62px);
+      overflow-y: auto;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .atelier-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold-light); border: 1px solid #e8d5b0;
+      padding: 6px 14px; margin-bottom: 36px;
+    }
+    .atelier-badge span { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 12px; letter-spacing: .06em; color: #8a6c28; }
+    .badge-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+    .atelier-title { font-size: clamp(32px,4vw,52px); font-weight: normal; line-height: 1.08; letter-spacing: -.025em; margin-bottom: 24px; }
+    .atelier-title em { font-style: italic; color: var(--gold); }
+
+    .atelier-sub { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 15px; line-height: 1.7; color: var(--mid); margin-bottom: 48px; max-width: 420px; }
+
+    .atelier-points { list-style: none; display: flex; flex-direction: column; gap: 18px; margin-bottom: 48px; }
+    .atelier-points li { display: flex; align-items: flex-start; gap: 14px; }
+    .point-icon { width: 28px; height: 28px; flex-shrink: 0; background: var(--gold-light); border: 1px solid #e8d5b0; display: flex; align-items: center; justify-content: center; font-size: 12px; margin-top: 2px; }
+    .point-text { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 14px; line-height: 1.55; color: var(--mid); }
+    .point-text strong { color: var(--black); font-weight: 500; }
+
+    .atelier-speakers { padding-top: 32px; border-top: 1px solid var(--line); }
+    .speakers-label { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--soft); margin-bottom: 16px; }
+    .speakers-list { display: flex; flex-direction: column; gap: 10px; }
+    .speaker { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 13px; color: var(--dark); }
+    .speaker span { color: var(--soft); }
+
+    /* RIGHT — FORM */
+    .page-right { padding: 80px 48px 80px 64px; }
+
+    .form-title { font-size: 24px; font-weight: normal; color: var(--black); margin-bottom: 8px; }
+    .form-sub { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 14px; color: var(--soft); margin-bottom: 40px; }
+
+    .form-group { margin-bottom: 24px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+
+    label {
+      display: block;
+      font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
+      font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 8px;
+    }
+    label .req { color: var(--gold); }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%;
+      font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
+      font-size: 15px; color: var(--black);
+      background: var(--white); border: 1px solid var(--line);
+      padding: 12px 16px; outline: none;
+      transition: border-color .2s;
+      -webkit-appearance: none; appearance: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--black); }
+    textarea { resize: vertical; min-height: 100px; }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 14px center;
+      padding-right: 40px; cursor: pointer;
+    }
+
+    .format-choice { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .format-opt { position: relative; }
+    .format-opt input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+    .format-opt label {
+      display: block; padding: 14px 16px;
+      border: 1px solid var(--line); cursor: pointer;
+      font-size: 13px; letter-spacing: 0; text-transform: none; color: var(--mid);
+      transition: all .2s; margin: 0;
+    }
+    .format-opt input:checked + label { border-color: var(--black); color: var(--black); background: var(--white); }
+    .format-opt label:hover { border-color: var(--black); color: var(--black); }
+    .format-opt-title { font-weight: 500; display: block; margin-bottom: 2px; }
+    .format-opt-sub { font-size: 11px; color: var(--soft); display: block; }
+
+    .privacy-note { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 12px; color: var(--soft); line-height: 1.5; margin-bottom: 24px; }
+
+    .btn-submit {
+      width: 100%;
+      font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
+      font-size: 15px; letter-spacing: .04em;
+      background: var(--black); color: var(--white);
+      border: none; padding: 16px 32px; cursor: pointer;
+      transition: opacity .2s;
+    }
+    .btn-submit:hover { opacity: .8; }
+
+    /* SUCCESS */
+    .form-success {
+      display: none; text-align: center; padding: 48px 0;
+    }
+    .success-icon { font-size: 40px; margin-bottom: 20px; }
+    .success-title { font-size: 26px; font-weight: normal; margin-bottom: 12px; }
+    .success-sub { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 15px; color: var(--mid); line-height: 1.65; }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; } nav .nav-links { display: none; }
+      .page-grid { grid-template-columns: 1fr; padding-top: 62px; }
+      .page-left { position: static; height: auto; padding: 60px 24px 40px; }
+      .page-right { padding: 40px 24px 80px; }
+      .form-row { grid-template-columns: 1fr; }
+      .format-choice { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="landing.html" class="nav-logo">Law Camp</a>
+  <ul class="nav-links">
+    <li><a href="programmes.html">Formation</a></li>
+    <li><a href="landing.html#agence">Agence</a></li>
+    <li><a href="landing.html#ressources">Ressources</a></li>
+    <li><a href="landing.html#contact">Contact</a></li>
+  </ul>
+  <a href="atelier.html" class="nav-atelier" style="background:var(--gold);color:var(--white);">Atelier découverte — Gratuit</a>
+</nav>
+
+<div class="page-grid">
+
+  <!-- LEFT — PITCH -->
+  <div class="page-left">
+    <div class="atelier-badge">
+      <span class="badge-dot"></span>
+      <span>Gratuit · 45 minutes · En ligne</span>
+    </div>
+    <h1 class="atelier-title">Atelier<br><em>découverte</em></h1>
+    <p class="atelier-sub">
+      Une session live pour voir comment l'IA s'applique concrètement à votre pratique. On travaille sur vos vrais cas. Aucun prérequis.
+    </p>
+    <ul class="atelier-points">
+      <li>
+        <div class="point-icon">①</div>
+        <p class="point-text"><strong>Présentation de votre cabinet</strong><br>On comprend votre pratique, vos volumes, vos dossiers répétitifs.</p>
+      </li>
+      <li>
+        <div class="point-icon">②</div>
+        <p class="point-text"><strong>Démo live sur vos cas</strong><br>On construit en direct un mini-agent sur l'une de vos tâches chronophages.</p>
+      </li>
+      <li>
+        <div class="point-icon">③</div>
+        <p class="point-text"><strong>Roadmap personnalisée</strong><br>On repart avec 3 choses concrètes à automatiser et la priorité recommandée.</p>
+      </li>
+    </ul>
+    <div class="atelier-speakers">
+      <p class="speakers-label">Animé par</p>
+      <div class="speakers-list">
+        <p class="speaker">Julien Chriqui <span>· Fondateur Law Agent AI</span></p>
+        <p class="speaker">Romane Lévy <span>· Avocate M&A, Co-fondatrice Law Camp</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT — FORM -->
+  <div class="page-right">
+    <h2 class="form-title">Réserver mon créneau</h2>
+    <p class="form-sub">On vous recontacte sous 24h pour confirmer un horaire.</p>
+
+    <!--
+      Pour activer l'envoi automatique vers les deux adresses mail :
+      1. Créer un compte gratuit sur formspree.io
+      2. Créer un nouveau formulaire et ajouter les deux emails (julienchriqui@gmail.com + romanelevy.avocat@gmail.com)
+      3. Remplacer YOUR_FORM_ID dans action="https://formspree.io/f/YOUR_FORM_ID"
+      En attendant, le formulaire soumet via mailto (ouvre le client mail).
+    -->
+    <form id="atelier-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+      <div class="form-row">
+        <div class="form-group" style="margin:0">
+          <label>Prénom <span class="req">*</span></label>
+          <input type="text" name="prenom" required placeholder="Marie" />
+        </div>
+        <div class="form-group" style="margin:0">
+          <label>Nom <span class="req">*</span></label>
+          <input type="text" name="nom" required placeholder="Dupont" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email professionnel <span class="req">*</span></label>
+        <input type="email" name="email" required placeholder="marie@cabinet-dupont.fr" />
+      </div>
+
+      <div class="form-group">
+        <label>Téléphone</label>
+        <input type="tel" name="telephone" placeholder="+33 6 00 00 00 00" />
+      </div>
+
+      <div class="form-group">
+        <label>Cabinet / Structure <span class="req">*</span></label>
+        <input type="text" name="cabinet" required placeholder="Cabinet Dupont & Associés" />
+      </div>
+
+      <div class="form-group">
+        <label>Votre spécialité <span class="req">*</span></label>
+        <select name="specialite" required>
+          <option value="" disabled selected>Sélectionner…</option>
+          <option>Contentieux de masse</option>
+          <option>Droit de la consommation</option>
+          <option>Droit de la copropriété</option>
+          <option>Droit des sociétés / M&A</option>
+          <option>Droit fiscal</option>
+          <option>Recouvrement</option>
+          <option>Juriste d'entreprise</option>
+          <option>Autre</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Quel format vous intéresse ?</label>
+        <div class="format-choice">
+          <div class="format-opt">
+            <input type="radio" name="format" id="f-bootcamp" value="Bootcamp Août" />
+            <label for="f-bootcamp">
+              <span class="format-opt-title">Bootcamp · Août</span>
+              <span class="format-opt-sub">24–26 août · 9h–17h</span>
+            </label>
+          </div>
+          <div class="format-opt">
+            <input type="radio" name="format" id="f-soirs" value="Programme du soir Septembre" />
+            <label for="f-soirs">
+              <span class="format-opt-title">Soirs · Septembre</span>
+              <span class="format-opt-sub">15–24 sept · 17h–20h</span>
+            </label>
+          </div>
+          <div class="format-opt">
+            <input type="radio" name="format" id="f-agence" value="Services Agence" />
+            <label for="f-agence">
+              <span class="format-opt-title">Services Agence</span>
+              <span class="format-opt-sub">Déploiement sur-mesure</span>
+            </label>
+          </div>
+          <div class="format-opt">
+            <input type="radio" name="format" id="f-nc" value="Pas encore décidé" checked />
+            <label for="f-nc">
+              <span class="format-opt-title">Pas encore décidé</span>
+              <span class="format-opt-sub">Je veux d'abord découvrir</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Votre contexte / votre question</label>
+        <textarea name="message" placeholder="Décrivez en quelques mots votre cabinet, vos dossiers répétitifs ou ce que vous aimeriez automatiser…"></textarea>
+      </div>
+
+      <p class="privacy-note">Vos données sont utilisées uniquement pour organiser cet atelier. Elles ne sont jamais transmises à des tiers. Vous pouvez demander leur suppression à tout moment.</p>
+
+      <button type="submit" class="btn-submit">Réserver mon atelier découverte →</button>
+    </form>
+
+    <div class="form-success" id="success-msg">
+      <p class="success-icon">✓</p>
+      <h3 class="success-title">Demande reçue.</h3>
+      <p class="success-sub">Julien ou Romane vous recontacte sous 24h pour confirmer votre créneau.<br><br>À très bientôt.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Fallback JS : si Formspree n'est pas encore configuré, affiche la confirmation après soumission
+  const form = document.getElementById('atelier-form');
+  const success = document.getElementById('success-msg');
+
+  form.addEventListener('submit', function(e) {
+    const action = form.getAttribute('action');
+    if (action.includes('YOUR_FORM_ID')) {
+      // Formspree pas encore configuré — fallback mailto
+      e.preventDefault();
+      const data = new FormData(form);
+      const body = [...data.entries()].map(([k,v]) => `${k}: ${v}`).join('\n');
+      const subject = encodeURIComponent('Atelier Découverte Law Camp — ' + (data.get('prenom') || '') + ' ' + (data.get('nom') || ''));
+      const bodyEnc = encodeURIComponent(body);
+      window.location.href = `mailto:julienchriqui@gmail.com,romanelevy.avocat@gmail.com?subject=${subject}&body=${bodyEnc}`;
+    }
+    // Si Formspree configuré, Formspree gère la redirection/confirmation
+  });
+
+  // Écouter la confirmation Formspree si configuré
+  window.addEventListener('message', function(e) {
+    if (e.data && e.data.type === 'submitSuccess') {
+      form.style.display = 'none';
+      success.style.display = 'block';
+    }
+  });
+</script>
+
+</body>
+</html>

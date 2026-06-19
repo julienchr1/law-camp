@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programmes — Law Camp</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0a0a0a; --dark: #111111; --mid: #444444; --soft: #888888;
+      --line: #e8e8e8; --bg: #fafafa; --white: #ffffff;
+      --gold: #b8963e; --gold-light: #f5ede0;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: "Georgia","Times New Roman",serif; background: var(--bg); color: var(--black); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,250,250,0.94); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 62px;
+    }
+    .nav-logo { font-family: "Georgia",serif; font-size: 15px; letter-spacing: .03em; color: var(--black); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 13px; color: var(--mid); transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--black); }
+    .nav-atelier { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 12px; letter-spacing: .05em; border: 1px solid var(--gold); color: var(--gold); padding: 8px 18px; transition: all .2s; }
+    .nav-atelier:hover { background: var(--gold); color: var(--white); }
+
+    section { padding: 112px 48px; }
+    .container { max-width: 920px; margin: 0 auto; }
+    .label { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
+
+    /* PAGE HERO */
+    #page-hero { padding-top: 148px; padding-bottom: 72px; border-bottom: 1px solid var(--line); }
+    .page-title { font-size: clamp(36px,5vw,60px); font-weight: normal; line-height: 1.08; letter-spacing: -.025em; margin-bottom: 24px; }
+    .page-sub { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 16px; line-height: 1.65; color: var(--mid); max-width: 520px; }
+
+    /* FORMAT TOGGLE */
+    #formats { background: var(--white); border-bottom: 1px solid var(--line); padding: 80px 48px; }
+    .format-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 56px; }
+    .format-block { border: 1px solid var(--line); padding: 40px; transition: border-color .2s; }
+    .format-block.active { border-color: var(--black); }
+    .fb-tag { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--white); background: var(--black); padding: 3px 10px; display: inline-block; margin-bottom: 20px; }
+    .fb-tag.outline { background: transparent; color: var(--soft); border: 1px solid var(--line); }
+    .fb-title { font-size: 22px; color: var(--black); margin-bottom: 8px; }
+    .fb-dates { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 14px; color: var(--gold); margin-bottom: 20px; }
+    .fb-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+    .fb-list li { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 13px; color: var(--mid); padding-left: 16px; position: relative; }
+    .fb-list li::before { content: "—"; position: absolute; left: 0; color: var(--line); }
+
+    .cocktail-bar { display: flex; align-items: center; gap: 16px; padding: 16px 24px; background: var(--gold-light); border: 1px solid #e8d5b0; }
+    .cocktail-bar p { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 14px; color: #6b4e1c; }
+    .cocktail-bar p strong { font-weight: 500; }
+
+    /* PROGRAMME DETAIL */
+    #programme-detail { border-bottom: 1px solid var(--line); }
+    .prog-title { font-size: clamp(28px,3.5vw,40px); font-weight: normal; letter-spacing: -.015em; margin-bottom: 64px; }
+
+    .day-block { display: grid; grid-template-columns: 80px 1fr; gap: 0 48px; padding: 52px 0; border-top: 1px solid var(--line); }
+    .day-block:last-child { border-bottom: 1px solid var(--line); }
+    .day-num { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); padding-top: 4px; }
+    .day-title { font-size: 24px; font-weight: normal; color: var(--black); margin-bottom: 6px; }
+    .day-theme { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 13px; color: var(--gold); letter-spacing: .04em; margin-bottom: 28px; }
+    .day-modules { list-style: none; display: flex; flex-direction: column; gap: 11px; margin-bottom: 28px; }
+    .day-modules li { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 14px; line-height: 1.5; color: var(--mid); padding-left: 18px; position: relative; }
+    .day-modules li::before { content: "—"; position: absolute; left: 0; color: var(--line); }
+    .day-result { padding: 16px 20px; border-left: 2px solid var(--gold); }
+    .day-result-label { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .day-result-text { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 13px; color: var(--dark); line-height: 1.5; }
+
+    /* FORMATEURS */
+    #formateurs { background: var(--white); border-bottom: 1px solid var(--line); }
+    .formateurs-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 48px; }
+    .formateur-name { font-size: 20px; font-weight: normal; color: var(--black); margin-bottom: 6px; }
+    .formateur-role { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .formateur-bio { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 14px; line-height: 1.65; color: var(--mid); margin-bottom: 12px; }
+    .formateur-cases { list-style: none; display: flex; flex-direction: column; gap: 5px; margin-top: 8px; }
+    .formateur-cases li { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 13px; color: var(--dark); padding-left: 16px; position: relative; }
+    .formateur-cases li::before { content: "→"; position: absolute; left: 0; color: var(--gold); font-size: 11px; top: 2px; }
+
+    /* PRICING */
+    #tarifs { border-bottom: 1px solid var(--line); }
+    .tarifs-note { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 13px; color: var(--soft); margin-bottom: 48px; max-width: 480px; }
+    .tarifs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .tarif-card { border: 1px solid var(--line); padding: 48px; position: relative; }
+    .tarif-card.featured { border-color: var(--black); }
+    .tarif-badge { position: absolute; top: -1px; right: 32px; font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; background: var(--black); color: var(--white); padding: 4px 12px; }
+    .tarif-name { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); margin-bottom: 24px; }
+    .tarif-price { font-size: 48px; font-weight: normal; line-height: 1; color: var(--black); letter-spacing: -.02em; margin-bottom: 8px; }
+    .tarif-price span { font-size: 20px; color: var(--soft); }
+    .tarif-period { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 13px; color: var(--soft); margin-bottom: 36px; }
+    .tarif-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+    .tarif-features li { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 14px; color: var(--mid); padding-left: 18px; position: relative; }
+    .tarif-features li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-size: 12px; }
+    .btn-black { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 13px; letter-spacing: .04em; background: var(--black); color: var(--white); padding: 14px 24px; display: block; text-align: center; transition: opacity .2s; }
+    .btn-black:hover { opacity: .75; }
+    .btn-outline-full { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 13px; letter-spacing: .04em; background: transparent; color: var(--black); border: 1px solid var(--line); padding: 14px 24px; display: block; text-align: center; transition: all .2s; }
+    .btn-outline-full:hover { border-color: var(--black); }
+
+    /* FAQ */
+    #faq { background: var(--white); }
+    .faq-title { font-size: clamp(26px,3vw,36px); font-weight: normal; letter-spacing: -.015em; margin-bottom: 56px; }
+    .faq-item { border-top: 1px solid var(--line); padding: 30px 0; }
+    .faq-item:last-child { border-bottom: 1px solid var(--line); }
+    .faq-q { font-size: 19px; font-weight: normal; color: var(--black); margin-bottom: 14px; }
+    .faq-a { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 14px; line-height: 1.65; color: var(--mid); max-width: 680px; }
+
+    footer { border-top: 1px solid var(--line); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; }
+    .footer-logo { font-family: "Georgia",serif; font-size: 14px; color: var(--mid); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 12px; color: var(--soft); transition: color .2s; }
+    .footer-links a:hover { color: var(--black); }
+    .footer-copy { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 12px; color: var(--soft); }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; } nav .nav-links { display: none; }
+      section { padding: 80px 24px; } #page-hero { padding-top: 110px; }
+      .format-toggle { grid-template-columns: 1fr; }
+      .day-block { grid-template-columns: 1fr; gap: 16px; }
+      .formateurs-grid { grid-template-columns: 1fr; gap: 40px; }
+      .tarifs-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="landing.html" class="nav-logo">Law Camp</a>
+  <ul class="nav-links">
+    <li><a href="programmes.html" class="active">Formation</a></li>
+    <li><a href="landing.html#agence">Agence</a></li>
+    <li><a href="landing.html#ressources">Ressources</a></li>
+    <li><a href="landing.html#contact">Contact</a></li>
+  </ul>
+  <a href="atelier.html" class="nav-atelier">Atelier découverte — Gratuit</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section id="page-hero">
+  <div class="container">
+    <p class="label" style="margin-bottom:24px">Formation</p>
+    <h1 class="page-title">Le programme Law Camp</h1>
+    <p class="page-sub">3 jours pour construire un agent IA opérationnel dans ton cabinet. Deux formats, même programme, même résultat.</p>
+  </div>
+</section>
+
+<!-- FORMATS -->
+<section id="formats">
+  <div class="container">
+    <p class="label" style="margin-bottom:40px">Choisir son format</p>
+    <div class="format-toggle">
+      <div class="format-block active">
+        <span class="fb-tag">Bootcamp</span>
+        <h3 class="fb-title">3 jours intensifs</h3>
+        <p class="fb-dates">Lun. 24 · Mar. 25 · Mer. 26 août 2026</p>
+        <ul class="fb-list">
+          <li>9h — 17h (déjeuner inclus)</li>
+          <li>Distanciel · 10 participants max</li>
+          <li>Résultat en 3 jours consécutifs</li>
+          <li>Momentum maximal, immersion totale</li>
+        </ul>
+        <p style="font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;font-size:13px;color:var(--soft);">Idéal si tu veux dédier 3 jours et repartir avec ton outil.</p>
+      </div>
+      <div class="format-block">
+        <span class="fb-tag outline">Programme du soir</span>
+        <h3 class="fb-title">6 soirées en 2 semaines</h3>
+        <p class="fb-dates">Mar–Mer–Jeu · 15, 16, 17 + 22, 23, 24 sept. 2026</p>
+        <ul class="fb-list">
+          <li>17h — 20h</li>
+          <li>Distanciel · 10 participants max</li>
+          <li>6 sessions de 3h — même contenu étalé</li>
+          <li>Compatible avec ton activité cabinet</li>
+        </ul>
+        <p style="font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;font-size:13px;color:var(--soft);">Idéal si tu ne peux pas bloquer 3 jours consécutifs.</p>
+      </div>
+    </div>
+    <div class="cocktail-bar">
+      <span style="font-size:18px">🥂</span>
+      <p><strong>Cocktail de clôture à Paris</strong> — Les deux programmes se terminent par une soirée conviviale pour se rencontrer, échanger et étendre son réseau.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMME DÉTAIL -->
+<section id="programme-detail">
+  <div class="container">
+    <p class="label" style="margin-bottom:40px">Le programme</p>
+    <h2 class="prog-title">Ce qu'on construit ensemble, session par session.</h2>
+
+    <div class="day-block">
+      <div class="day-num">Jour 1<br><span style="font-size:10px;color:var(--line)">Session 1–2</span></div>
+      <div>
+        <h3 class="day-title">Comprendre et cartographier</h3>
+        <p class="day-theme">Romane Lévy · Julien Chriqui</p>
+        <ul class="day-modules">
+          <li>Anatomie d'un cabinet IA-first : ce qui change vraiment (démo live)</li>
+          <li>Claude pour juristes : system instructions, rôles, garde-fous déontologiques</li>
+          <li>Gestion des données clients : RGPD, confidentialité, Zero Data Retention</li>
+          <li>Atelier : cartographie de ton propre process — quoi automatiser en priorité</li>
+          <li>Atelier : ton premier prompt professionnel sur un vrai cas cabinet</li>
+        </ul>
+        <div class="day-result">
+          <p class="day-result-label">Tu repars avec</p>
+          <p class="day-result-text">Une cartographie de ton process + 3 tâches priorisées + ton premier agent configuré et testé.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-num">Jour 2<br><span style="font-size:10px;color:var(--line)">Session 3–4</span></div>
+      <div>
+        <h3 class="day-title">Construire avec Claude</h3>
+        <p class="day-theme">Julien Chriqui</p>
+        <ul class="day-modules">
+          <li>Architecture d'un agent juridique : mémoire, instructions, outils, chaînes</li>
+          <li>Construction live : analyse BDC ou contrat — tous construisent en parallèle</li>
+          <li>Chaîner les étapes : analyse → qualification → génération d'acte</li>
+          <li>Atelier individuel : ton agent (qualification dossier, rédaction acte ou bordereau)</li>
+          <li>Fiabilité et garde-fous : éviter les hallucinations, citer ses sources, audit log</li>
+        </ul>
+        <div class="day-result">
+          <p class="day-result-label">Tu repars avec</p>
+          <p class="day-result-text">Un agent fonctionnel testé sur un vrai document de ton cabinet.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-num">Jour 3<br><span style="font-size:10px;color:var(--line)">Session 5–6</span></div>
+      <div>
+        <h3 class="day-title">Brancher le monde réel</h3>
+        <p class="day-theme">Julien Chriqui · Sacha Samama</p>
+        <ul class="day-modules">
+          <li>MCP OpenLegi live : jurisprudence Légifrance + Judilibre dans ton agent — zéro hallucination</li>
+          <li>Pappers API live : statut société, liquidation, RCS — automatique dans ton flux</li>
+          <li>Google Workspace : automatisation boîte mail, calendrier audiences, alertes délais</li>
+          <li>Collecte, tri et génération de bordereau de pièces justificatives</li>
+          <li>Atelier final : assembler ton stack complet sur un dossier réel</li>
+          <li>Roadmap 30 jours — comment industrialiser dans ton cabinet</li>
+          <li>Démos finales + Discord communauté + plan d'action individuel</li>
+        </ul>
+        <div class="day-result">
+          <p class="day-result-label">Tu repars avec</p>
+          <p class="day-result-text">Un stack complet opérationnel (Claude + OpenLegi + Pappers + Google), un plan d'action 30 jours et l'accès à la communauté.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATEURS -->
+<section id="formateurs">
+  <div class="container">
+    <p class="label" style="margin-bottom:48px">Les formateurs</p>
+    <h2 style="font-size:clamp(26px,3vw,36px);font-weight:normal;letter-spacing:-.015em;margin-bottom:56px;">Praticiens, pas théoriciens.</h2>
+    <div class="formateurs-grid">
+      <div>
+        <p class="formateur-name">Romane Lévy</p>
+        <p class="formateur-role">Avocate M&A · Co-fondatrice Law Camp</p>
+        <p class="formateur-bio">Avocate en Private Equity M&A chez Miguérès Moulin, formée à l'EFB. Elle milite depuis deux ans pour l'adoption sérieuse de l'IA dans la pratique juridique. Elle ancre chaque module dans la réalité déontologique du cabinet.</p>
+      </div>
+      <div>
+        <p class="formateur-name">Julien Chriqui</p>
+        <p class="formateur-role">Fondateur Law Agent AI · Head of Product AI, Spendesk</p>
+        <p class="formateur-bio">Entrepreneur, tech et product. Co-fondateur d'Okko (acquis Spendesk 2024), Head of Product AI & Connectivity — a lancé le MCP Spendesk utilisé par des centaines de DAF européennes. Agents juridiques déployés :</p>
+        <ul class="formateur-cases">
+          <li>Contentieux photovoltaïque de masse (500 dossiers)</li>
+          <li>Estimation IFI · avocats fiscalistes</li>
+          <li>Revue de contrats · juristes fintech</li>
+          <li>Contentieux droit de la copropriété</li>
+          <li>Automatisation boîte mail & relances</li>
+          <li>Calendrier audiences & alertes délais</li>
+          <li>Collecte, tri et bordereau de pièces</li>
+        </ul>
+      </div>
+      <div>
+        <p class="formateur-name">Sacha Samama</p>
+        <p class="formateur-role">Co-fondateur & CTO Allisone.ai · Fondateur Yotta Academy</p>
+        <p class="formateur-bio">ML Engineer de formation (Quantmetry), fondateur de Yotta Academy (école IA/data Paris) et co-fondateur d'Allisone.ai (Series A, $9.95M). A formé des centaines de profils à l'IA appliquée. Pilote les intégrations et l'industrialisation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section id="tarifs">
+  <div class="container">
+    <p class="label" style="margin-bottom:24px">Tarifs</p>
+    <h2 style="font-size:clamp(26px,3vw,36px);font-weight:normal;letter-spacing:-.015em;margin-bottom:16px;">Même tarif pour les deux formats.</h2>
+    <p class="tarifs-note">10 participants max par cohorte. Les places early bird sont limitées.</p>
+    <div class="tarifs-grid">
+      <div class="tarif-card featured">
+        <span class="tarif-badge">Early bird</span>
+        <p class="tarif-name">Bootcamp Août ou Soirs Septembre</p>
+        <p class="tarif-price">2 500 <span>€ HT</span></p>
+        <p class="tarif-period">Bootcamp 24–26 août · ou Programme soirs 15–24 sept.</p>
+        <ul class="tarif-features">
+          <li>Programme complet (3 jours ou 6 soirées)</li>
+          <li>Cocktail de clôture à Paris inclus</li>
+          <li>Accès Discord communauté (30 jours)</li>
+          <li>Session de suivi collective à J+30</li>
+          <li>Accès OpenLegi MCP configuré</li>
+          <li>Tous les agents et templates de la formation</li>
+        </ul>
+        <a href="atelier.html" class="btn-black">Réserver ma place →</a>
+      </div>
+      <div class="tarif-card">
+        <p class="tarif-name">Tarif standard</p>
+        <p class="tarif-price">3 000 <span>€ HT</span></p>
+        <p class="tarif-period">Bootcamp 24–26 août · ou Programme soirs 15–24 sept.</p>
+        <ul class="tarif-features">
+          <li>Programme complet (3 jours ou 6 soirées)</li>
+          <li>Cocktail de clôture à Paris inclus</li>
+          <li>Accès Discord communauté (30 jours)</li>
+          <li>Session de suivi collective à J+30</li>
+          <li>Accès OpenLegi MCP configuré</li>
+          <li>Tous les agents et templates de la formation</li>
+        </ul>
+        <a href="atelier.html" class="btn-outline-full">Rejoindre la liste d'attente →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <h2 class="faq-title">Questions fréquentes</h2>
+    <div class="faq-item">
+      <h3 class="faq-q">Faut-il des compétences techniques ?</h3>
+      <p class="faq-a">Non. Si tu utilises Gmail et Word au quotidien, tu peux suivre. On part de zéro et on construit progressivement. Le Jour 1 est délibérément accessible — même sans aucun prérequis.</p>
+    </div>
+    <div class="faq-item">
+      <h3 class="faq-q">Mes données clients sont-elles protégées ?</h3>
+      <p class="faq-a">Oui. On travaille en Zero Data Retention (ZDR) : aucune donnée transmise n'est utilisée pour entraîner les modèles d'IA. L'architecture est conforme RGPD et compatible avec la déontologie.</p>
+    </div>
+    <div class="faq-item">
+      <h3 class="faq-q">C'est quoi un MCP concrètement ?</h3>
+      <p class="faq-a">Un connecteur qui branche ton agent IA à des bases de données externes en temps réel — Légifrance, Judilibre, le Registre du commerce — sans copier-coller. Ton agent cite des arrêts réels et vérifiables, pas des hallucinations.</p>
+    </div>
+    <div class="faq-item">
+      <h3 class="faq-q">Puis-je venir avec mes propres dossiers ?</h3>
+      <p class="faq-a">Oui — et c'est fortement recommandé. Les ateliers sont conçus pour travailler sur tes cas réels (anonymisés). C'est ce qui garantit que tu repars avec un outil directement utilisable.</p>
+    </div>
+    <div class="faq-item">
+      <h3 class="faq-q">Y a-t-il un suivi après ?</h3>
+      <p class="faq-a">Oui. Accès Discord communauté privé 30 jours, session de suivi collective à J+30, et possibilité d'accéder aux services de l'agence pour aller plus loin dans ton cabinet.</p>
+    </div>
+    <div class="faq-item">
+      <h3 class="faq-q">Financement OPCO / CPF possible ?</h3>
+      <p class="faq-a">Nous explorons les modalités de prise en charge OPCO pour avocats libéraux. Le CPF est conditionné à Qualiopi — en cours via organisme partenaire. Contacte-nous pour faire le point sur ta situation.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">Law Camp</span>
+  <div class="footer-links">
+    <a href="programmes.html">Formation</a>
+    <a href="landing.html#agence">Agence</a>
+    <a href="landing.html#ressources">Ressources</a>
+    <a href="landing.html#contact">Contact</a>
+    <a href="atelier.html">Atelier gratuit</a>
+  </div>
+  <span class="footer-copy">© 2026 · Law Camp · Paris</span>
+</footer>
+
+</body>
+</html>
