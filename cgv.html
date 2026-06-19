@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conditions Générales de Vente — Law Camp</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0a0a0a; --dark: #111111; --mid: #444444; --soft: #888888;
+      --line: #e8e8e8; --bg: #fafafa; --white: #ffffff; --gold: #b8963e;
+    }
+    body { font-family: "Georgia","Times New Roman",serif; background: var(--bg); color: var(--black); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--black); }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,250,250,0.94); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 62px;
+    }
+    .nav-logo { font-family: "Georgia",serif; font-size: 15px; letter-spacing: .03em; color: var(--black); text-decoration: none; }
+    .nav-back { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 13px; color: var(--soft); text-decoration: none; transition: color .2s; }
+    .nav-back:hover { color: var(--black); }
+
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 120px 48px 100px; }
+
+    .doc-header { margin-bottom: 64px; padding-bottom: 40px; border-bottom: 1px solid var(--line); }
+    .doc-label { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); margin-bottom: 20px; }
+    .doc-title { font-size: clamp(28px,4vw,44px); font-weight: normal; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 16px; }
+    .doc-meta { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 13px; color: var(--soft); }
+
+    .toc { background: var(--white); border: 1px solid var(--line); padding: 32px; margin-bottom: 56px; }
+    .toc-title { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--soft); margin-bottom: 16px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 13px; color: var(--mid); line-height: 2; }
+    .toc a { color: var(--mid); text-decoration: none; transition: color .2s; }
+    .toc a:hover { color: var(--black); }
+
+    .article { margin-bottom: 52px; }
+    .article-title {
+      font-size: 18px; font-weight: normal; color: var(--black);
+      margin-bottom: 20px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .article-num { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 6px; }
+
+    p { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 14px; line-height: 1.75; color: var(--mid); margin-bottom: 14px; }
+    p:last-child { margin-bottom: 0; }
+    p strong { color: var(--dark); font-weight: 500; }
+
+    ul, ol { padding-left: 20px; margin-bottom: 14px; }
+    li { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 14px; line-height: 1.75; color: var(--mid); margin-bottom: 4px; }
+
+    .info-block { background: var(--white); border: 1px solid var(--line); border-left: 3px solid var(--gold); padding: 20px 24px; margin-bottom: 20px; }
+    .info-block p { margin: 0; }
+
+    .table-wrap { overflow-x: auto; margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 13px; text-align: left; padding: 10px 14px; border: 1px solid var(--line); }
+    th { background: var(--white); color: var(--dark); font-weight: 500; }
+    td { color: var(--mid); }
+
+    footer { border-top: 1px solid var(--line); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; }
+    .footer-logo { font-family: "Georgia",serif; font-size: 14px; color: var(--mid); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 12px; color: var(--soft); transition: color .2s; text-decoration: none; }
+    .footer-links a:hover { color: var(--black); }
+    .footer-copy { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 12px; color: var(--soft); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .page-wrap { padding: 100px 24px 80px; }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="landing.html" class="nav-logo">Law Camp</a>
+  <a href="landing.html" class="nav-back">← Retour au site</a>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="doc-header">
+    <p class="doc-label">Document contractuel</p>
+    <h1 class="doc-title">Conditions Générales de Vente</h1>
+    <p class="doc-meta">Version 1.0 — En vigueur à compter du 1er juillet 2026 · Law Camp</p>
+  </div>
+
+  <div class="toc">
+    <p class="toc-title">Sommaire</p>
+    <ol>
+      <li><a href="#art1">Identification du prestataire</a></li>
+      <li><a href="#art2">Objet et champ d'application</a></li>
+      <li><a href="#art3">Programmes de formation proposés</a></li>
+      <li><a href="#art4">Inscription et confirmation</a></li>
+      <li><a href="#art5">Tarifs et modalités de paiement</a></li>
+      <li><a href="#art6">Conditions d'annulation et de remboursement</a></li>
+      <li><a href="#art7">Report et remplacement</a></li>
+      <li><a href="#art8">Obligations du prestataire</a></li>
+      <li><a href="#art9">Obligations du participant</a></li>
+      <li><a href="#art10">Propriété intellectuelle des supports</a></li>
+      <li><a href="#art11">Confidentialité des données partagées en formation</a></li>
+      <li><a href="#art12">Protection des données personnelles</a></li>
+      <li><a href="#art13">Responsabilité</a></li>
+      <li><a href="#art14">Force majeure</a></li>
+      <li><a href="#art15">Droit applicable et juridiction</a></li>
+    </ol>
+  </div>
+
+  <!-- ARTICLE 1 -->
+  <div class="article" id="art1">
+    <h2 class="article-title"><span class="article-num">Article 1</span>Identification du prestataire</h2>
+    <div class="info-block">
+      <p><strong>Law Camp</strong> est une marque exploitée par Julien Chriqui, entrepreneur individuel.<br>
+      SIRET : 917 531 212 · TVA intracommunautaire : FR [À compléter]<br>
+      Adresse : 26 rue Raspail, 92300 Levallois-Perret, France<br>
+      Contact : <a href="mailto:julienchriqui@gmail.com">julienchriqui@gmail.com</a></p>
+    </div>
+    <p>Les formations sont co-animées par Romane Lévy, avocate inscrite au Barreau de Paris, et Sacha Samama, intervenants indépendants agissant dans le cadre de partenariats pédagogiques.</p>
+  </div>
+
+  <!-- ARTICLE 2 -->
+  <div class="article" id="art2">
+    <h2 class="article-title"><span class="article-num">Article 2</span>Objet et champ d'application</h2>
+    <p>Les présentes Conditions Générales de Vente (ci-après « CGV ») régissent l'ensemble des relations contractuelles entre Law Camp (ci-après « le Prestataire ») et toute personne physique ou morale (ci-après « le Participant ») souhaitant s'inscrire à l'un des programmes de formation proposés par Law Camp.</p>
+    <p>Toute inscription à une formation emporte acceptation pleine et entière des présentes CGV. Le Participant reconnaît en avoir pris connaissance avant de procéder à son inscription.</p>
+    <p>Ces CGV s'appliquent également aux prestations de l'Agence Law Camp (déploiement d'agents IA sur-mesure), sauf stipulation contraire prévue dans la convention de prestation spécifique signée avec le client.</p>
+  </div>
+
+  <!-- ARTICLE 3 -->
+  <div class="article" id="art3">
+    <h2 class="article-title"><span class="article-num">Article 3</span>Programmes de formation proposés</h2>
+    <p>Law Camp propose des programmes de formation continue à destination des professionnels du droit (avocats, juristes d'entreprise, collaborateurs de cabinets), portant sur l'utilisation d'outils d'intelligence artificielle dans la pratique juridique.</p>
+    <p>Les formats proposés sont les suivants :</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Format</th><th>Durée</th><th>Modalité</th><th>Effectif max</th></tr>
+        <tr><td>Bootcamp intensif</td><td>3 jours (24h)</td><td>Distanciel</td><td>10 participants</td></tr>
+        <tr><td>Programme du soir</td><td>6 sessions de 3h (18h)</td><td>Distanciel</td><td>10 participants</td></tr>
+      </table>
+    </div>
+    <p>Le contenu pédagogique, les dates et les modalités pratiques de chaque session sont précisés sur le site <strong>law-camp.fr</strong> et dans le document de confirmation d'inscription adressé au Participant.</p>
+    <p><strong>Les formations dispensées par Law Camp ne constituent pas un exercice du droit.</strong> Elles ont pour objet le développement de compétences techniques et opérationnelles. Aucun contenu ne peut être assimilé à une consultation juridique.</p>
+  </div>
+
+  <!-- ARTICLE 4 -->
+  <div class="article" id="art4">
+    <h2 class="article-title"><span class="article-num">Article 4</span>Inscription et confirmation</h2>
+    <p>L'inscription s'effectue via le formulaire en ligne disponible sur le site ou par email adressé à <a href="mailto:julienchriqui@gmail.com">julienchriqui@gmail.com</a>.</p>
+    <p>L'inscription est considérée comme définitive à réception par le Participant :</p>
+    <ul>
+      <li>d'un email de confirmation de Law Camp, et</li>
+      <li>du règlement de l'acompte ou du solde total selon les modalités de l'Article 5.</li>
+    </ul>
+    <p>Le Prestataire se réserve le droit de refuser une inscription si les places sont complètes ou si le profil du candidat n'est pas conforme aux prérequis du programme. En cas de refus, les sommes versées sont intégralement remboursées.</p>
+    <p>Toute inscription engage le Participant à titre personnel. La cession d'une place à un tiers est possible sous réserve d'accord écrit préalable du Prestataire et de communication des coordonnées complètes du remplaçant au moins 7 jours ouvrés avant la date de début.</p>
+  </div>
+
+  <!-- ARTICLE 5 -->
+  <div class="article" id="art5">
+    <h2 class="article-title"><span class="article-num">Article 5</span>Tarifs et modalités de paiement</h2>
+    <p>Les tarifs en vigueur sont indiqués en euros hors taxes (HT) sur le site au moment de l'inscription. La TVA applicable est ajoutée au taux légal en vigueur.</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Tarif</th><th>Conditions</th><th>Montant HT</th></tr>
+        <tr><td>Early bird</td><td>Places limitées, selon disponibilité</td><td>2 500 €</td></tr>
+        <tr><td>Standard</td><td>Tarif plein</td><td>3 000 €</td></tr>
+      </table>
+    </div>
+    <p>Le règlement s'effectue par virement bancaire aux coordonnées communiquées dans le bon de commande, ou par tout autre moyen précisé lors de la confirmation d'inscription.</p>
+    <p><strong>Modalités :</strong> le règlement intégral est exigible à l'inscription. Un échéancier en deux versements (50 % à l'inscription, 50 % sept jours avant le début de la formation) peut être accordé sur demande écrite et accord express du Prestataire.</p>
+    <p>Tout retard de paiement entraîne, de plein droit et sans mise en demeure préalable, l'application d'une pénalité égale à 3 fois le taux d'intérêt légal en vigueur, ainsi qu'une indemnité forfaitaire pour frais de recouvrement de 40 €.</p>
+    <p><strong>Financement OPCO :</strong> si le Participant entend mobiliser une prise en charge par un OPCO, il lui appartient d'effectuer sa demande avant l'inscription et d'en informer le Prestataire. Law Camp s'engage à fournir les justificatifs nécessaires (convention de formation, attestation de présence, facture).</p>
+  </div>
+
+  <!-- ARTICLE 6 -->
+  <div class="article" id="art6">
+    <h2 class="article-title"><span class="article-num">Article 6</span>Conditions d'annulation et de remboursement</h2>
+    <p>Toute demande d'annulation doit être adressée par écrit à <a href="mailto:julienchriqui@gmail.com">julienchriqui@gmail.com</a>. La date de réception de l'email fait foi.</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Délai avant le début de la formation</th><th>Remboursement</th></tr>
+        <tr><td>Plus de 30 jours calendaires</td><td>Remboursement intégral</td></tr>
+        <tr><td>Entre 15 et 30 jours calendaires</td><td>50 % du montant réglé</td></tr>
+        <tr><td>Moins de 15 jours calendaires</td><td>Aucun remboursement — avoir valable 12 mois sur la prochaine session</td></tr>
+        <tr><td>Non-présentation sans notification préalable</td><td>Aucun remboursement</td></tr>
+      </table>
+    </div>
+    <p>En cas d'empêchement justifié (maladie grave, accident, décès d'un proche au premier degré — sur présentation de justificatif), le Prestataire s'engage à étudier au cas par cas le report ou le remboursement partiel, sans obligation contractuelle.</p>
+  </div>
+
+  <!-- ARTICLE 7 -->
+  <div class="article" id="art7">
+    <h2 class="article-title"><span class="article-num">Article 7</span>Report et remplacement à l'initiative du prestataire</h2>
+    <p>Le Prestataire se réserve le droit d'annuler ou de reporter une session en cas de force majeure, d'indisponibilité d'un formateur ou d'un nombre d'inscrits insuffisant (minimum 4 participants). Le Participant en est informé par email au moins 10 jours ouvrés avant la date prévue.</p>
+    <p>En cas d'annulation à l'initiative du Prestataire :</p>
+    <ul>
+      <li>le Participant est remboursé intégralement des sommes versées, ou</li>
+      <li>à sa demande, reporté sur la session suivante sans supplément.</li>
+    </ul>
+    <p>Le Prestataire ne saurait être tenu responsable d'autres préjudices, notamment les frais de déplacement ou d'hébergement engagés par le Participant.</p>
+  </div>
+
+  <!-- ARTICLE 8 -->
+  <div class="article" id="art8">
+    <h2 class="article-title"><span class="article-num">Article 8</span>Obligations du prestataire</h2>
+    <p>Law Camp s'engage à :</p>
+    <ul>
+      <li>dispenser la formation conformément au programme et aux horaires annoncés ;</li>
+      <li>mettre à disposition les supports pédagogiques dans les 48h suivant chaque session ;</li>
+      <li>assurer l'accès aux outils et environnements techniques nécessaires pendant la durée de la formation ;</li>
+      <li>maintenir la confidentialité de toute information partagée par les participants dans le cadre des ateliers ;</li>
+      <li>délivrer une attestation de présence et/ou de compétences à l'issue de la formation, sur demande.</li>
+    </ul>
+    <p>Law Camp est soumis à une <strong>obligation de moyens</strong> et non de résultat quant à l'acquisition de compétences par le Participant.</p>
+  </div>
+
+  <!-- ARTICLE 9 -->
+  <div class="article" id="art9">
+    <h2 class="article-title"><span class="article-num">Article 9</span>Obligations du participant</h2>
+    <p>Le Participant s'engage à :</p>
+    <ul>
+      <li>se connecter aux sessions à l'heure convenue, avec une connexion internet stable et un ordinateur permettant l'utilisation des outils pédagogiques ;</li>
+      <li>ne pas enregistrer, reproduire ou diffuser tout ou partie des sessions sans accord écrit préalable du Prestataire ;</li>
+      <li>respecter les règles de confidentialité à l'égard des autres participants et de leurs cabinets ;</li>
+      <li>ne partager aucune donnée personnelle identifiante de ses clients lors des ateliers pratiques (anonymisation préalable requise) ;</li>
+      <li>adopter un comportement respectueux à l'égard des formateurs et des autres participants.</li>
+    </ul>
+    <p>Tout manquement grave à ces obligations pourra entraîner l'exclusion du Participant, sans remboursement.</p>
+  </div>
+
+  <!-- ARTICLE 10 -->
+  <div class="article" id="art10">
+    <h2 class="article-title"><span class="article-num">Article 10</span>Propriété intellectuelle des supports</h2>
+    <p>L'ensemble des supports pédagogiques, programmes, méthodologies, agents et templates fournis dans le cadre de la formation sont la propriété exclusive de Law Camp et sont protégés par le droit de la propriété intellectuelle.</p>
+    <p>Le Participant bénéficie d'une <strong>licence d'utilisation personnelle, non exclusive et non cessible</strong> des outils et supports remis, pour les besoins exclusifs de son activité professionnelle propre.</p>
+    <p>Il est interdit, sans accord écrit préalable, de :</p>
+    <ul>
+      <li>reproduire, adapter ou diffuser les supports à des tiers ;</li>
+      <li>utiliser les contenus à des fins commerciales, notamment pour dispenser des formations concurrentes ;</li>
+      <li>revendiquer la paternité des méthodologies développées par Law Camp.</li>
+    </ul>
+  </div>
+
+  <!-- ARTICLE 11 -->
+  <div class="article" id="art11">
+    <h2 class="article-title"><span class="article-num">Article 11</span>Confidentialité des données partagées en formation</h2>
+    <p>Law Camp reconnaît la sensibilité particulière des données manipulées par les professionnels du droit, soumis au secret professionnel (article 66-5 de la loi du 31 décembre 1971 pour les avocats).</p>
+    <p>En conséquence, Law Camp s'engage à :</p>
+    <ul>
+      <li>ne jamais solliciter le partage de données identifiantes de clients lors des ateliers ;</li>
+      <li>traiter toute information partagée dans un cadre de stricte confidentialité ;</li>
+      <li>ne pas utiliser les données ou cas partagés à des fins d'illustration publique sans accord écrit préalable ;</li>
+      <li>utiliser des environnements techniques configurés en <strong>Zero Data Retention (ZDR)</strong> : aucune donnée n'est utilisée pour entraîner les modèles d'IA.</li>
+    </ul>
+  </div>
+
+  <!-- ARTICLE 12 -->
+  <div class="article" id="art12">
+    <h2 class="article-title"><span class="article-num">Article 12</span>Protection des données personnelles</h2>
+    <p>Les données personnelles collectées lors de l'inscription (nom, prénom, email, cabinet, spécialité) sont traitées par Julien Chriqui, responsable de traitement, sur le fondement de l'exécution du contrat (article 6.1.b du RGPD).</p>
+    <p>Ces données sont utilisées exclusivement pour :</p>
+    <ul>
+      <li>la gestion administrative de l'inscription et du suivi pédagogique ;</li>
+      <li>l'envoi d'informations relatives aux prochaines sessions Law Camp (base : intérêt légitime — désabonnement possible à tout moment) ;</li>
+      <li>l'émission des documents comptables et administratifs.</li>
+    </ul>
+    <p>Les données sont conservées pendant 3 ans à compter de la dernière interaction commerciale, puis archivées 5 ans pour les obligations comptables légales.</p>
+    <p>Elles ne sont jamais transmises à des tiers à des fins commerciales. Le Participant dispose d'un droit d'accès, de rectification, d'effacement et de portabilité, exerceable à <a href="mailto:julienchriqui@gmail.com">julienchriqui@gmail.com</a>. En cas de réclamation non résolue, le Participant peut saisir la CNIL (<a href="https://www.cnil.fr" target="_blank">cnil.fr</a>).</p>
+  </div>
+
+  <!-- ARTICLE 13 -->
+  <div class="article" id="art13">
+    <h2 class="article-title"><span class="article-num">Article 13</span>Responsabilité</h2>
+    <p>Les formations dispensées par Law Camp ont pour unique objet le développement de compétences techniques. <strong>Les outils et agents construits pendant la formation constituent des outils d'aide à la décision.</strong> Ils ne se substituent en aucun cas au jugement professionnel du Participant, ni à sa responsabilité déontologique.</p>
+    <p>Law Camp ne saurait être tenu responsable :</p>
+    <ul>
+      <li>de l'utilisation que le Participant fait des outils construits dans le cadre de son activité professionnelle ;</li>
+      <li>d'une interruption de service due à une défaillance des outils tiers utilisés (Claude, OpenLegi, Pappers, Google Workspace) ;</li>
+      <li>de tout dommage indirect résultant de la formation.</li>
+    </ul>
+    <p>La responsabilité de Law Camp est en tout état de cause limitée au montant des sommes versées par le Participant au titre de la formation concernée.</p>
+  </div>
+
+  <!-- ARTICLE 14 -->
+  <div class="article" id="art14">
+    <h2 class="article-title"><span class="article-num">Article 14</span>Force majeure</h2>
+    <p>Law Camp ne saurait être tenu responsable de l'inexécution de ses obligations en cas de force majeure au sens de l'article 1218 du Code civil, notamment : pandémie, défaillance des infrastructures internet, indisponibilité prolongée des plateformes techniques tierces. En pareil cas, le Prestataire s'engage à informer le Participant dans les meilleurs délais et à proposer une solution alternative (report, format alternatif).</p>
+  </div>
+
+  <!-- ARTICLE 15 -->
+  <div class="article" id="art15">
+    <h2 class="article-title"><span class="article-num">Article 15</span>Droit applicable et juridiction</h2>
+    <p>Les présentes CGV sont soumises au droit français. En cas de litige, les parties s'engagent à rechercher une solution amiable avant tout recours judiciaire, dans un délai de 30 jours à compter de la notification du différend par lettre recommandée avec accusé de réception.</p>
+    <p>À défaut d'accord amiable, le <strong>Tribunal de Commerce de Paris</strong> sera seul compétent, sauf disposition légale contraire applicable au Participant.</p>
+    <p>Pour tout litige de consommation, le Participant peut recourir gratuitement à un médiateur de la consommation. Law Camp adhère au dispositif de médiation [À compléter — médiateur désigné].</p>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-logo">Law Camp</span>
+  <div class="footer-links">
+    <a href="landing.html">Accueil</a>
+    <a href="programmes.html">Formation</a>
+    <a href="cgv.html">CGV</a>
+    <a href="cgu.html">CGU</a>
+  </div>
+  <span class="footer-copy">© 2026 · Law Camp · Paris</span>
+</footer>
+
+</body>
+</html>
