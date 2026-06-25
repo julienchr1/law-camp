@@ -85,6 +85,8 @@
     .formateurs-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 48px; }
     .formateur-name { font-size: 20px; font-weight: normal; color: var(--black); margin-bottom: 6px; }
     .formateur-role { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .formateur-photo { width: 72px; height: 72px; border-radius: 50%; background: var(--gold-light); border: 2px solid #e8d5b0; display: flex; align-items: center; justify-content: center; font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 20px; color: var(--gold); font-weight: 500; margin-bottom: 20px; overflow: hidden; }
+    .formateur-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
     .formateur-bio { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 14px; line-height: 1.65; color: var(--mid); margin-bottom: 12px; }
     .formateur-cases { list-style: none; display: flex; flex-direction: column; gap: 5px; margin-top: 8px; }
     .formateur-cases li { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 13px; color: var(--dark); padding-left: 16px; position: relative; }
@@ -306,11 +308,13 @@
     <h2 style="font-size:clamp(26px,3vw,36px);font-weight:normal;letter-spacing:-.015em;margin-bottom:56px;">Praticiens, pas théoriciens.</h2>
     <div class="formateurs-grid">
       <div>
+        <div class="formateur-photo">RL</div>
         <p class="formateur-name">Romane Lévy</p>
         <p class="formateur-role">Avocate M&A · Co-fondatrice Law Camp</p>
         <p class="formateur-bio">Avocate en Private Equity M&A chez Miguérès Moulin, formée à l'EFB. Elle milite depuis deux ans pour l'adoption sérieuse de l'IA dans la pratique juridique. Elle ancre chaque module dans la réalité déontologique du cabinet.</p>
       </div>
       <div>
+        <div class="formateur-photo">JC</div>
         <p class="formateur-name">Julien Chriqui</p>
         <p class="formateur-role">Fondateur Law Agent AI · Head of Product AI, Spendesk</p>
         <p class="formateur-bio">Entrepreneur, tech et product. Co-fondateur d'Okko (acquis Spendesk 2024), Head of Product AI & Connectivity — a lancé le MCP Spendesk utilisé par des centaines de DAF européennes. Agents juridiques déployés :</p>
@@ -325,6 +329,7 @@
         </ul>
       </div>
       <div>
+        <div class="formateur-photo">SS</div>
         <p class="formateur-name">Sacha Samama</p>
         <p class="formateur-role">Co-fondateur & CTO Allisone.ai · Fondateur Yotta Academy</p>
         <p class="formateur-bio">ML Engineer de formation (Quantmetry), fondateur de Yotta Academy (école IA/data Paris) et co-fondateur d'Allisone.ai (Series A, $9.95M). A formé des centaines de profils à l'IA appliquée. Pilote les intégrations et l'industrialisation.</p>
@@ -396,6 +401,10 @@
     <div class="faq-item">
       <h3 class="faq-q">Y a-t-il un suivi après ?</h3>
       <p class="faq-a">Oui. Accès Discord communauté privé 30 jours, session de suivi collective à J+30, et possibilité d'accéder aux services de l'agence pour aller plus loin dans ton cabinet.</p>
+    </div>
+    <div class="faq-item">
+      <h3 class="faq-q">Cette formation compte-t-elle pour mes 20h de formation continue obligatoire ?</h3>
+      <p class="faq-a">Oui, en partie. Les formations Law Camp peuvent être déclarées au titre de la formation continue obligatoire des avocats (art. 85 du décret du 27 nov. 1991), dans la catégorie <strong>« gestion du cabinet et développement des compétences »</strong> — typiquement jusqu'à 6 heures reconnues sur les 20h annuelles. Une attestation de présence vous est remise à l'issue de la formation. Les pratiques variant selon les Barreaux, nous vous recommandons de valider la prise en charge avec votre Bâtonnier avant l'inscription — nous pouvons vous fournir le programme détaillé pour faciliter cette démarche.</p>
     </div>
     <div class="faq-item">
       <h3 class="faq-q">Financement OPCO / CPF possible ?</h3>

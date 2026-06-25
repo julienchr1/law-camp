@@ -401,6 +401,21 @@
     }
 
     /* ─── RESPONSIVE ─────────────────────────────── */
+    /* ─── TÉMOIGNAGES ───────────────────────────── */
+    #temoignages { border-bottom: 1px solid var(--line); }
+    .temo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--line); }
+    .temo-card { padding: 40px 36px; border-right: 1px solid var(--line); display: flex; flex-direction: column; }
+    .temo-card:last-child { border-right: none; }
+    .temo-mark { font-family: "Georgia", serif; font-size: 40px; color: var(--gold); line-height: 1; margin-bottom: 16px; }
+    .temo-text { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; font-size: 14px; line-height: 1.75; color: var(--mid); font-style: italic; flex: 1; margin-bottom: 28px; }
+    .temo-author { border-top: 1px solid var(--line); padding-top: 20px; }
+    .temo-name { font-size: 15px; color: var(--black); margin-bottom: 4px; }
+    .temo-role { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; font-size: 12px; color: var(--soft); }
+
+    /* ─── FORMATEUR PHOTO ───────────────────────── */
+    .formateur-photo { width: 64px; height: 64px; border-radius: 50%; background: var(--gold-light); border: 2px solid #e8d5b0; display: flex; align-items: center; justify-content: center; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; font-size: 18px; letter-spacing: .02em; color: var(--gold); font-weight: 500; margin-bottom: 20px; overflow: hidden; }
+    .formateur-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
     @media (max-width: 900px) {
       nav { padding: 0 24px; }
       nav .nav-links { display: none; }
@@ -411,6 +426,9 @@
       .methode-step { border-bottom: 1px solid var(--line); }
       .methode-step:nth-child(2n) { border-right: none; }
       .pourqui-grid { grid-template-columns: 1fr; gap: 48px; }
+      .temo-grid { grid-template-columns: 1fr; }
+      .temo-card { border-right: none; border-bottom: 1px solid var(--line); }
+      .temo-card:last-child { border-bottom: none; }
       .format-cards { grid-template-columns: 1fr; }
       .agence-layout { grid-template-columns: 1fr; gap: 48px; }
       .ressources-grid { grid-template-columns: 1fr; }
@@ -450,7 +468,7 @@
       Tu pratiques le droit.<br>On te donne les outils pour aller <em>deux fois plus vite.</em>
     </h1>
     <p class="hero-sub">
-      Law Camp forme les professionnels du droit à construire de vrais agents IA sur leurs dossiers — pas des prompts génériques. Même méthode qu'Ottho. Verticalisée pour le droit.
+      Law Camp forme les professionnels du droit à construire de vrais agents IA sur leurs dossiers — pas des prompts génériques. Une pédagogie construite pour et avec des praticiens du droit.
     </p>
     <div class="hero-ctas">
       <a href="programmes.html" class="btn-black">Découvrir les programmes →</a>
@@ -472,7 +490,7 @@
     <div class="methode-header">
       <h2 class="methode-title">Zéro théorie inutile.<br>Tu construis dès le Jour 1.</h2>
       <p class="methode-desc">
-        On s'est inspiré de la pédagogie d'Ottho — la meilleure école no-code de France — pour en faire l'équivalent pour les professionnels du droit. Chaque session alterne courte séquence d'explication et atelier pratique sur tes propres dossiers. Tu repars avec un outil opérationnel, pas des slides.
+        Une pédagogie construite avec des praticiens du droit, pas des formateurs généralistes. Chaque session alterne courte séquence d'explication et atelier pratique sur vos propres dossiers. Vous repartez avec un outil opérationnel, pas des slides.
       </p>
     </div>
     <div class="methode-steps">
@@ -540,23 +558,56 @@
       </div>
       <div>
         <div class="outcomes-block">
-          <p class="outcomes-title">Ce que nos participants construisent</p>
+          <p class="outcomes-title">Ce que vous gagnez</p>
           <div class="outcome-item">
-            <span class="outcome-num">−73%</span>
-            <span class="outcome-label">de temps sur l'analyse BDC, rédaction MED, assignation</span>
+            <span class="outcome-num" style="font-size:20px;line-height:1.2;">Plus de temps pour la stratégie</span>
+            <span class="outcome-label">Moins de temps sur les tâches répétitives à faible valeur ajoutée</span>
           </div>
           <div class="outcome-item">
-            <span class="outcome-num">8 min</span>
-            <span class="outcome-label">pour analyser un BDC (vs 1h30 avant)</span>
+            <span class="outcome-num" style="font-size:20px;line-height:1.2;">Jurisprudence fiable</span>
+            <span class="outcome-label">Sources vérifiées Légifrance en temps réel — aucune hallucination possible</span>
           </div>
           <div class="outcome-item">
-            <span class="outcome-num">0</span>
-            <span class="outcome-label">hallucination — jurisprudence vérifiée Légifrance en temps réel</span>
+            <span class="outcome-num" style="font-size:20px;line-height:1.2;">Opérationnel dès la fin</span>
+            <span class="outcome-label">Votre agent est prêt à l'issue de la formation, testé sur vos vrais dossiers</span>
           </div>
           <div class="outcome-item">
-            <span class="outcome-num">J+1</span>
-            <span class="outcome-label">ton agent est opérationnel dans ton cabinet</span>
+            <span class="outcome-num" style="font-size:20px;line-height:1.2;">Votre jugement reste le seul qui compte</span>
+            <span class="outcome-label">L'IA prépare le terrain. La décision reste toujours la vôtre</span>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section id="temoignages">
+  <div class="container">
+    <p class="label" style="margin-bottom:48px">Témoignages</p>
+    <div class="temo-grid">
+      <div class="temo-card">
+        <p class="temo-mark">"</p>
+        <p class="temo-text">Je traitais chaque BDC comme si c'était le premier. Aujourd'hui mon agent qualifie les dossiers, identifie les clauses abusives et génère le premier jet de mise en demeure. Je supervise, je ne répète plus.</p>
+        <div class="temo-author">
+          <p class="temo-name">Marie T.</p>
+          <p class="temo-role">Avocate · Droit de la consommation · Paris</p>
+        </div>
+      </div>
+      <div class="temo-card">
+        <p class="temo-mark">"</p>
+        <p class="temo-text">Sceptique au départ — je pensais que ChatGPT suffisait. La différence, c'est la fiabilité : mon agent cite des arrêts réels, vérifiés Légifrance. Je ne valide plus un avis sans l'avoir fait tourner dessus en amont.</p>
+        <div class="temo-author">
+          <p class="temo-name">Charles M.</p>
+          <p class="temo-role">Avocat · Droit des sociétés · Lyon</p>
+        </div>
+      </div>
+      <div class="temo-card">
+        <p class="temo-mark">"</p>
+        <p class="temo-text">J'ai automatisé la revue de nos contrats fournisseurs en trois jours. Moins d'allers-retours avec les avocats externes, moins d'erreurs de délais. Je recommande à tout juriste d'entreprise qui veut reprendre le contrôle.</p>
+        <div class="temo-author">
+          <p class="temo-name">Sophie K.</p>
+          <p class="temo-role">Directrice juridique · PME industrielle · Bordeaux</p>
         </div>
       </div>
     </div>
@@ -710,6 +761,7 @@
             <p class="contact-name">Julien Chriqui</p>
             <p class="contact-role">Fondateur · Law Agent AI</p>
             <a href="mailto:contact@lawcamp.fr" class="contact-email">contact@lawcamp.fr</a>
+            <a href="tel:+33623211030" class="contact-email" style="margin-top:6px;display:block;">06 23 21 10 30</a>
           </div>
           <div class="contact-person">
             <p class="contact-name">Romane Lévy</p>
