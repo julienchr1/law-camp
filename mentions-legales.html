@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentions légales — Law Camp</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0a0a0a; --dark: #111111; --mid: #444444; --soft: #888888;
+      --line: #e8e8e8; --bg: #fafafa; --white: #ffffff; --gold: #b8963e;
+    }
+    body { font-family: "Georgia","Times New Roman",serif; background: var(--bg); color: var(--black); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--black); }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,250,250,0.94); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 62px;
+    }
+    .nav-logo { font-family: "Georgia",serif; font-size: 15px; letter-spacing: .03em; color: var(--black); text-decoration: none; }
+    .nav-back { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 13px; color: var(--soft); text-decoration: none; transition: color .2s; }
+    .nav-back:hover { color: var(--black); }
+
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 120px 48px 100px; }
+
+    .doc-header { margin-bottom: 64px; padding-bottom: 40px; border-bottom: 1px solid var(--line); }
+    .doc-label { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); margin-bottom: 20px; }
+    .doc-title { font-size: clamp(28px,4vw,44px); font-weight: normal; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 16px; }
+    .doc-meta { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 13px; color: var(--soft); }
+
+    .article { margin-bottom: 52px; }
+    .article-title {
+      font-size: 18px; font-weight: normal; color: var(--black);
+      margin-bottom: 20px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .article-num { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 6px; }
+
+    p { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 14px; line-height: 1.75; color: var(--mid); margin-bottom: 14px; }
+    p:last-child { margin-bottom: 0; }
+    p strong { color: var(--dark); font-weight: 500; }
+
+    ul { padding-left: 20px; margin-bottom: 14px; }
+    li { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 14px; line-height: 1.75; color: var(--mid); margin-bottom: 4px; }
+
+    .info-block { background: var(--white); border: 1px solid var(--line); border-left: 3px solid var(--gold); padding: 20px 24px; margin-bottom: 20px; }
+    .info-block p { margin-bottom: 8px; }
+    .info-block p:last-child { margin-bottom: 0; }
+
+    .co-block { background: var(--white); border: 1px solid var(--line); padding: 20px 24px; margin-bottom: 12px; }
+    .co-block p { margin-bottom: 4px; }
+    .co-block p:last-child { margin-bottom: 0; }
+
+    footer { border-top: 1px solid var(--line); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; }
+    .footer-logo { font-family: "Georgia",serif; font-size: 14px; color: var(--mid); }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 12px; color: var(--soft); transition: color .2s; text-decoration: none; }
+    .footer-links a:hover { color: var(--black); }
+    .footer-copy { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; font-size: 12px; color: var(--soft); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .page-wrap { padding: 100px 24px 80px; }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="landing.html" class="nav-logo">Law Camp</a>
+  <a href="landing.html" class="nav-back">← Retour au site</a>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="doc-header">
+    <p class="doc-label">Information légale</p>
+    <h1 class="doc-title">Mentions légales</h1>
+    <p class="doc-meta">En vigueur à compter du 1er juillet 2026 · Law Camp</p>
+  </div>
+
+  <div class="article" id="responsable">
+    <h2 class="article-title"><span class="article-num">Responsable de la publication</span>Julien Chriqui</h2>
+    <div class="info-block">
+      <p><strong>Julien Chriqui</strong> — Entrepreneur individuel (auto-entrepreneur)</p>
+      <p>SIRET : 917 531 212</p>
+      <p>TVA intracommunautaire : FR10917531212</p>
+      <p>Adresse : 26 rue Raspail, 92300 Levallois-Perret, France</p>
+      <p>Email : <a href="mailto:contact@lawcamp.fr">contact@lawcamp.fr</a></p>
+    </div>
+    <p>Julien Chriqui agit en qualité de responsable légal du site et de la marque Law Camp. Il est le responsable de traitement des données personnelles collectées via le site.</p>
+  </div>
+
+  <div class="article" id="co-animateurs">
+    <h2 class="article-title"><span class="article-num">Co-animateurs</span>Intervenants pédagogiques</h2>
+    <p>Les formations Law Camp sont co-animées par les intervenants suivants, agissant en qualité d'entrepreneurs indépendants dans le cadre de partenariats pédagogiques :</p>
+    <div class="co-block">
+      <p><strong>Romane Lévy</strong></p>
+      <p>Avocate au Barreau de Paris — Auto-entrepreneur</p>
+      <p>SIRET : [À compléter]</p>
+      <p>Email : <a href="mailto:romane@lawcamp.fr">romane@lawcamp.fr</a></p>
+    </div>
+    <div class="co-block">
+      <p><strong>Sacha Samama</strong></p>
+      <p>Auto-entrepreneur — Co-fondateur &amp; CTO Allisone.ai</p>
+      <p>SIRET : [À compléter]</p>
+    </div>
+    <p>Les formations Law Camp ne constituent pas l'exercice du droit. Elles ont pour objet le développement de compétences techniques et opérationnelles. Aucun contenu ne peut être assimilé à une consultation juridique.</p>
+  </div>
+
+  <div class="article" id="hebergement">
+    <h2 class="article-title"><span class="article-num">Hébergement</span>Prestataire technique</h2>
+    <div class="info-block">
+      <p><strong>Railway Inc.</strong></p>
+      <p>340 S Lemon Ave #4133, Walnut, CA 91789, USA</p>
+      <p><a href="https://railway.app" target="_blank">https://railway.app</a></p>
+    </div>
+  </div>
+
+  <div class="article" id="propriete">
+    <h2 class="article-title"><span class="article-num">Propriété intellectuelle</span>Droits réservés</h2>
+    <p>L'ensemble du contenu de ce site — textes, visuels, design, structure, programmes pédagogiques, méthodologies et agents décrits — est la propriété exclusive de Julien Chriqui / Law Camp et est protégé par le Code de la propriété intellectuelle.</p>
+    <p>Toute reproduction, représentation, modification ou diffusion, totale ou partielle, sans autorisation écrite préalable de Law Camp, est interdite et constitue une contrefaçon sanctionnée par les articles L.335-2 et suivants du Code de la propriété intellectuelle.</p>
+  </div>
+
+  <div class="article" id="liens">
+    <h2 class="article-title"><span class="article-num">Liens externes</span>Sites tiers</h2>
+    <p>Le site Law Camp peut contenir des liens vers des sites tiers (Légifrance, Pappers, OpenLegi, etc.). Law Camp ne peut être tenu responsable du contenu des sites tiers vers lesquels ce site renvoie, ni de leur politique de confidentialité ou de leur disponibilité.</p>
+    <p>La création de liens vers lawcamp.fr est autorisée sans accord préalable, sous réserve de ne pas porter atteinte à l'image de Law Camp et de ne pas induire une association trompeuse avec la marque.</p>
+  </div>
+
+  <div class="article" id="donnees">
+    <h2 class="article-title"><span class="article-num">Données personnelles</span>RGPD</h2>
+    <p>Le traitement des données personnelles collectées sur ce site est détaillé dans la <a href="politique-confidentialite.html">Politique de confidentialité</a>. Pour toute question ou demande d'exercice de droits, écrire à <a href="mailto:contact@lawcamp.fr">contact@lawcamp.fr</a>.</p>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-logo">Law Camp</span>
+  <div class="footer-links">
+    <a href="landing.html">Accueil</a>
+    <a href="programmes.html">Formation</a>
+    <a href="mentions-legales.html">Mentions légales</a>
+    <a href="politique-confidentialite.html">Confidentialité</a>
+    <a href="cgv.html">CGV</a>
+    <a href="cgu.html">CGU</a>
+  </div>
+  <span class="footer-copy">© 2026 · Law Camp · Paris</span>
+</footer>
+
+</body>
+</html>

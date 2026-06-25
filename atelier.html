@@ -288,7 +288,7 @@
         <textarea name="message" placeholder="Décrivez en quelques mots votre cabinet, vos dossiers répétitifs ou ce que vous aimeriez automatiser…"></textarea>
       </div>
 
-      <p class="privacy-note">Vos données sont utilisées uniquement pour organiser cet atelier et vous recontacter. Elles ne sont jamais transmises à des tiers à des fins commerciales. Vous pouvez demander leur suppression à tout moment à <a href="mailto:julienchriqui@gmail.com" style="color:var(--mid)">julienchriqui@gmail.com</a>. En soumettant ce formulaire, vous acceptez nos <a href="cgv.html" style="color:var(--mid);border-bottom:1px solid var(--line)">CGV</a> et <a href="cgu.html" style="color:var(--mid);border-bottom:1px solid var(--line)">CGU</a>.</p>
+      <p class="privacy-note">Vos données sont utilisées uniquement pour organiser cet atelier et vous recontacter. Elles ne sont jamais transmises à des tiers à des fins commerciales. Vous pouvez demander leur suppression à tout moment à <a href="mailto:contact@lawcamp.fr" style="color:var(--mid)">contact@lawcamp.fr</a>. En soumettant ce formulaire, vous acceptez nos <a href="cgv.html" style="color:var(--mid);border-bottom:1px solid var(--line)">CGV</a> et <a href="cgu.html" style="color:var(--mid);border-bottom:1px solid var(--line)">CGU</a>.</p>
 
       <button type="submit" class="btn-submit" id="submit-btn">
         <span id="btn-label">Réserver mon atelier découverte →</span>
@@ -333,7 +333,7 @@
       access_key: WEB3FORMS_KEY,
       subject:    'Atelier Découverte Law Camp — ' + prenom + ' ' + nom,
       from_name:  'Law Camp',
-      cc:         'romanelevy.avocat@gmail.com',
+      cc:         'romane@lawcamp.fr',
       replyto:    raw.get('email') || '',
       prenom,
       nom,
@@ -360,7 +360,7 @@
         throw new Error(json.message || 'Erreur envoi');
       }
     } catch (err) {
-      formError.textContent   = 'Une erreur est survenue. Écrivez-nous directement : julienchriqui@gmail.com';
+      formError.textContent   = 'Une erreur est survenue. Écrivez-nous directement : contact@lawcamp.fr';
       formError.style.display = 'block';
       btnLabel.style.display   = 'inline';
       btnLoading.style.display = 'none';
